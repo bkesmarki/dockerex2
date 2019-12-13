@@ -11,6 +11,11 @@ services:
     ports:
     - "80:80"
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD","curl","-f", "http:/localhost"]
+      timeout: 10s
+      interval: 6s
+      retries: 3
   mysql:
     image: mysql:latest
     environment:
